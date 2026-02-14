@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+
+<h2>Your Tasks</h2>
+
+<form method="POST">
+    <input type="text" name="title" placeholder="Enter new task" required>
+    <button type="submit">Add Task</button>
+</form>
+
+<hr>
+
+<ul>
+    {% for task in tasks %}
+        <li>
+            {% if task[2] == 1 %}
+                <strike>{{ task[1] }}</strike>
+            {% else %}
+                {{ task[1] }}
+                <a href="/complete/{{ task[0] }}">Complete</a>
+            {% endif %}
+            | <a href="/delete/{{ task[0] }}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<br>
+<a href="/logout">Logout</a>
+
+</body>
+</html>
